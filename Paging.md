@@ -1,5 +1,7 @@
 # Paging
 
+* The LME and NXE flags in IA32_EFFR MSR (bit 8 and bit 11, respectively).
+
 分页机制只有在`CR0.PG=1`并且`CR0.PE=1`（开启保护模式）的时候才会生效，有如下4种分页模式：
 
 * If CR4.PAE = 0, `32-bit paging` is used.
@@ -8,6 +10,8 @@
 * If CR4.PAE = 1, IA32_EFER.LME = 1, and CR4.LA57 = 1, `5-level paging` is used.
 
 > 32-bit paging and PAE paging 只能被用在legacy protected mode (IA32_EFER.LME = 0).  相反，4级和5级的页表映射只能被用在IA-32e模式下(IA32_EFER.LME = 1).
+
+* **canonicality address**: In IA-32e 64-bit mode, the process enforces the upper bits of such address are identical: for 4-level paging, bits 63:47 are identical, it doesn't use bits 63:48. 
 
 ## Hirearchical pagin structures
 
